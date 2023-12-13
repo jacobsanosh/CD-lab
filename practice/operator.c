@@ -1,34 +1,31 @@
 #include<stdio.h>
+#include<stdlib.h>
 #include<string.h>
-#include<stdio.h>
 int main()
 {
-        int n,k=0,col=0,row=0,top=0;
-        char stack[20],ter[20],ip[20],opt[20][20];
-        printf("\nenter thr no of terminals\t");
+        char stack[20],ter[20],opt[20][20],ip[20];
+        int n,row=0,col=0,top=0,k=0;
+        printf("\nenter the  no of therminals\t");
         scanf("%d",&n);
-        printf("\nenter the terminals\t");
+        printf("\nenter the terminals\n");
         scanf("%s",ter);
-        printf("\nenter their precedence ");
         for(int i=0;i<n;i++)
         {
                 for(int j=0;j<n;j++)
                 {
-                        printf("\nenter their precedence %c %c :",ter[i],ter[j]);
+                        printf("\nenter the precedence %c %c:",ter[i],ter[j]);
                         scanf("%s",&opt[i][j]);
                 }
         }
-        printf("\nprecedence table is \n");
+        printf("\nprecedence table is\n");
         for(int i=0;i<n;i++)
-        {
                 printf("\t%c",ter[i]);
-        }
         for(int i=0;i<n;i++)
         {
                 printf("\n%c",ter[i]);
                 for(int j=0;j<n;j++)
                 {
-                        printf("\t %c",opt[i][j]);
+                        printf("\t%c",opt[i][j]);
                 }
         }
         printf("\nenter the input string\t");
@@ -45,20 +42,19 @@ int main()
                         if(ip[k]==ter[i])
                                 row=i;
                 }
-                if((stack[top]=='$')&&(ip[k]=='$'))
+                if((stack[top]=='$') && (ip[k]=='$'))
                 {
-                        printf("\nstring is accepted");
+                        printf("\nstring is accpeted");
                         break;
                 }
-                else if((opt[col][row]=='<')||(opt[col][row]=='='))
+                else if((opt[col][row]=='<')||(opt[row][col]=='='))
                 {
                         stack[++top]=opt[col][row];
                         stack[++top]=ip[k];
                         printf("shifted %c",ip[k]);
                         k++;
                 }
-                else
-                {
+                else{
                         if(opt[col][row]=='>')
                         {
                                 while(stack[top]!='<')
@@ -67,9 +63,9 @@ int main()
                                 printf("reduced");
                         }
                         else{
-                                printf("\nstring is not accpeted");
+                                printf("\nstirng not allowed");
                                 break;
-                            }
+                              }
                 }
                 printf("\n");
                 for(int i=0;i<=top;i++)
@@ -82,5 +78,6 @@ int main()
                         printf("%c",ip[i]);
                 }
                 printf("\t\t\t");
-         }      
-}
+        }                   
+}                       
+
